@@ -1,5 +1,7 @@
 name: Static Scans
 # alles actions mit namen "actions/" sind vorgefertigte actions von github marketplace
+# alles was in run's läuft in eigene actions packen
+# hash-differenzen prüfen und 
 on:
   #push: # not on push for the training (just manual)
   workflow_dispatch: # to allow running manually

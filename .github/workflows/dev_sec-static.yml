@@ -2,6 +2,8 @@ name: Static Scans
 # alles actions mit namen "actions/" sind vorgefertigte actions von github marketplace
 # alles was in run's läuft in eigene actions packen
 # hash-differenzen prüfen und 
+# SAST-tools für php und javascript steht auf den Folien
+# KICS auch für AWS-CLoudformation
 on:
   #push: # not on push for the training (just manual)
   workflow_dispatch: # to allow running manually

@@ -1,5 +1,5 @@
 name: Static Scans
-
+# alles actions mit namen "actions/" sind vorgefertigte actions von github marketplace
 on:
   #push: # not on push for the training (just manual)
   workflow_dispatch: # to allow running manually
@@ -27,7 +27,7 @@ jobs:
           java-version: 11
           distribution: 'temurin'
 
-      - name: Setup Maven Dependency Cache
+      - name: Setup Maven Dependency Cache #sinnvoll wenn dependencies nicht jedesmal neu geladen werden sollen
         uses: actions/cache@v4
         with:
           path: ~/.m2/repository
@@ -38,3 +38,16 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
  
+
+
+      # ======================================================
+
+
+      - name: Generate CycloneDX SBOM
+        run: mvn org.cyclonedx:cyclonedx-maven-plugin:2.7.9:makeAggregateBom # outputs to target/bom.json and/or bom.xml
+
+      - name: Upload SBOM as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-cyclonedx.json
+          path: target/bom.json
